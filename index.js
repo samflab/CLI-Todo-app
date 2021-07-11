@@ -3,7 +3,8 @@ var readlineSync = require("readline-sync");
 var i = 0, arr = [];
 //1. Welcoming the user
 function welcome() {
-  var username = readlineSync.question("Can I have your name? ");
+  console.log("Hi! Your TODO List here");
+  var username = readlineSync.question("Please share your name with me : ");
   console.log("Hi " + username + "!");
 }
 
@@ -12,8 +13,7 @@ function todoCommands() {
   console.log("Here's a list of things you can do here:");
   console.log("1. Add your todo to the list");
   console.log("2. Show all your todos");
-  console.log("3. Delete a Todo from your list");
-  console.log("4. Edit your todo from the list");
+  console.log("3. Delete a todo from your list");
 
   var optionNumber = readlineSync.question("Type the option number: ");
   switch (optionNumber) {
@@ -24,13 +24,11 @@ function todoCommands() {
       show();
       break;
     case '3'||'3.':
-    var arrNew = [];
-    arrNew=deletee();
-    console.log(arrNew);
+      deleteItems();
       break;
     default:
-    console.log("Undefined option");
-    break;
+      console.log("Undefined option");
+      break;
   }
 }
 
@@ -63,11 +61,11 @@ function show() {
     console.log(i + "." + arr[i] + "\n");
   }
   console.log("----------------");
+  todoCommands();
 }
 
 //5. Delete an item
-function deletee() {
-  show();
+function deleteItems() {
   if(arr.length == 0){
     console.log("Oops, your list is empty. Please add some items.");
     console.log("----------------------");
@@ -76,7 +74,9 @@ function deletee() {
   var itemIndex = readlineSync.question("Specify the array index: ");
   console.log("----------------");
   arr.splice(itemIndex, 1);
+  console.log("Items deleted successfully!");
   show();
+  todoCommands();
 }
 
 welcome();
